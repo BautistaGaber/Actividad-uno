@@ -72,4 +72,5 @@ if (foundProduct) {
   console.log(`Producto con ID ${productIdToFind} no encontrado.`)
 }
 
+
 console.log('Todos los productos:', productManager.getProducts())
