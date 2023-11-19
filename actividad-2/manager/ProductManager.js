@@ -1,8 +1,8 @@
 import fs from 'fs'
 
 export default class ProductManager {
-  constructor() {
-    this.path = './files/products.json'
+  constructor(path) {
+    this.path = path
   }
 
   getProducts = async () => {
@@ -27,14 +27,20 @@ export default class ProductManager {
 
   addProducts = async (product) => {
     const products = await this.getProducts()
-    if (products.length === 0) {
-      product.id = 1
-    } else {
-      product.id = products[products.length - 1].id + 1
+    const prodExists = products.find((p) => p.code === product.code)
+    if (!prodExists) {
+      if (products.length === 0) {
+        product.id = 1
+      } else {
+        product.id = products[products.length - 1].id + 1
+      }
+      products.push(product)
+      await fs.promises.writeFile(
+        this.path,
+        JSON.stringify(products, null, '\t')
+      )
+      return products
     }
-    products.push(product)
-    await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'))
-    return products
   }
 
   updateProducts = async (id, product) => {
@@ -60,7 +66,7 @@ export default class ProductManager {
     if (prodToDeleteIndex === -1) {
       return console.log('producto no encontrado')
     } else {
-        products.splice(prodToDeleteIndex, 1)
+      products.splice(prodToDeleteIndex, 1)
       await fs.promises.writeFile(
         this.path,
         JSON.stringify(products, null, '\t')
