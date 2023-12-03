@@ -27,7 +27,7 @@ app.get('/products', async (req, res) => {
 })
 
 app.get('/products/:pid', async (req, res) => {
-    const productId =req.params.pid
+    const productId = req.params.pid
     const product = products.find((p) => p.id === parseInt(productId))
 
     if(!product){
