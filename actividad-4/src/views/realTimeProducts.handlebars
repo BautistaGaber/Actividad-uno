@@ -1,38 +1,27 @@
 <h2>Products</h2>
-<div id="products"></div>
 
-<form id="form" method="post">
-    <p>
-        <label for="title" class="form-label">title</label>
-        <input type="text" class="form-input" id="title">
-    </p>
-    <p>
-        <label for="description" class="form-label">desription</label>
-        <input type="text" class="form-input" id="description">
-    </p>
-    <p>
-        <label for="price" class="form-label">price</label>
-        <input type="number" class="form-input" id="price">
-    </p>
-    <p>
-        <label for="category" class="form-label">category</label>
-        <input type="text" class="form-input" id="category">
-    </p>
-    <p>
-        <label for="thumbnail" class="form-label">thumbnail</label>
-        <input type="text" class="form-input" id="thumbnail">
-    </p>
-    <p>
-        <label for="code" class="form-label">code</label>
-        <input type="text" class="form-input" id="code">
-    </p>
-    <p>
-        <label for="stock" class="form-label">stock</label>
-        <input type="number" class="form-input" id="stock">
-    </p>
-    <button id="send" type="button">send</button>
-
+<form method="post" class="Form" id="add" action="/views/realTimeProducts">
+    <label for="Title"><strong>Titulo: </strong></label>
+    <input type="text" id="title" name="title"><br>
+    <label for="Description"><strong>Description: </strong></label>
+    <input type="text" id="description" name="description"><br>
+    <label for="Code"><strong>Code: </strong></label>
+    <input type="text" id="code" name="code"><br>
+    <label for="Price"><strong>Price: </strong></label>
+    <input type="number" id="price" name="price"><br>
+    <label for="Stock"><strong>Stock: </strong></label>
+    <input type="number" id="stock" name="stock"><br>
+    <label for="Category"><strong>Category: </strong></label>
+    <input type="text" id="category" name="category"><br>
+    <label for="Thumbnail"><strong>Thumbnail: </strong></label>
+    <input type="text" id="Thumbnail" name="thumbnail"><br>
+    <button type="submit" id="cargar">Cargar</button>
 </form>
+
+<h2>Lista de productos</h2>
+<div id="updateList">
+
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

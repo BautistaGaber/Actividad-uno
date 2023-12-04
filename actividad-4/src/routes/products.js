@@ -1,20 +1,9 @@
 import { Router } from "express"
 import ProductManager from "../managers/ProductManager.js"
-import socketServer from "../app.js"
-
 
 const productManager = new ProductManager('./src/files/products.json')
 
 const router = Router()
-
-router.get("/home", async (req,res) =>{
-    const products = await productManager.getProducts()
-    res.render('home', {})
-})
-
-router.get("/realTimeProducts", async (req,res) =>{
-    res.render('realTimeProducts')
-})
 
 router.get('/', async (req, res) => {
     const products = await productManager.getProducts()
@@ -36,13 +25,6 @@ router.get('/', async (req, res) => {
     } else {
       res.json({ product: product })
     }
-  })
-
-  router.post('/realTimeProducts', async (req,res) =>{
-    const prod = req.body
-    await productManager.addProducts(prod)
-    const products = productManager.getProducts()
-    socketServer.emit('newProducts', products)
   })
   
   router.post('/', async (req, res) => {

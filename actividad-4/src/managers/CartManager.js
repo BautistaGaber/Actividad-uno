@@ -1,7 +1,6 @@
 import fs from 'fs'
-import getProductsById from '../managers/ProductManagers.js'
 import { randomUUID } from 'crypto'
-import ProductManager from '../managers/ProductManagers.js'
+import ProductManager from './ProductManager.js'
 
 const productManager = new ProductManager('./src/files/products.json')
 

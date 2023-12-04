@@ -27,6 +27,7 @@ export default class ProductManager {
   }
 
   addProducts = async (product) => {
+    console.log(product)
     const requiredFields = ['title', 'description', 'price', 'thumbnail', 'code', 'stock', 'category']
     const missingFields = requiredFields.filter(field => !(field in product))
 

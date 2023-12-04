@@ -1,4 +1,4 @@
-import CartManager from '../managers/cartManager.js'
+import CartManager from '../managers/CartManager.js'
 import { Router } from 'express'
 
 const router = Router()

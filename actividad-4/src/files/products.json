@@ -28,5 +28,25 @@
 		"code": "prod4",
 		"stock": 2,
 		"id": "04ecc1ff-603b-4e5a-aec2-4d22ddc8a141"
+	},
+	{
+		"title": "hamaca",
+		"description": "hamaca para dormir",
+		"code": "22",
+		"price": "23000",
+		"stock": "3",
+		"category": "dormir",
+		"thumbnail": "/img.4",
+		"id": "42ad0bf5-b6bb-4beb-996f-38e401a92ab8"
+	},
+	{
+		"title": "reposera",
+		"description": "sentarse a descansar",
+		"code": "7",
+		"price": "1009",
+		"stock": "5",
+		"category": "descanso",
+		"thumbnail": "/img.5",
+		"id": "9cbf4443-afb4-4cb4-8cde-98e9aaddffda"
 	}
 ]

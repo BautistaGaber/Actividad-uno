@@ -6,10 +6,6 @@ socket.on('initialProducts', (products) => {
     renderProducts(products)
 })
 
-socket.on('newProducts', (updatedProducts) => {
-    renderProducts(updatedProducts);
-})
-
 function renderProducts(products) {
     const productList = document.getElementById('productList')
     productList.innerHTML = ""
@@ -21,11 +17,11 @@ function renderProducts(products) {
                        Price: $${prod.price},
                        Thumbnail: ${prod.thumbnail},
                        Code: ${prod.code},
-                       Stock: ${prod.stock}`;
+                       Stock: ${prod.stock}`
 
-        listItem.textContent = textContent;
+        listItem.textContent = textContent
 
-        productList.appendChild(listItem);
+        productList.appendChild(listItem)
     })
 } 
 
@@ -37,16 +33,34 @@ const category = document.getElementById('category')
 const thumbnail = document.getElementById('thumbnail')
 const code = document.getElementById('code')
 const stock = document.getElementById('stock')
+const updateList = document.getElementById('updateList')
 
-form.onsubmit = (send) => {
-    send.preventDefault();
-    const newProduct = {
-        title: title.value,
-        description: description.value,
-        price: price.value,
-        category: category.value,
-        code: code.value,
-        stock: stock.value
-    }
-    socket.emit('newProduct', newProduct);
+socket.on('products', (products)=>{
+    console.log(JSON.stringify(products))
+    let infoProducts = ''
+    updateList.innerHTML = `<ul>`
+    products.forEach(p=>{
+        console.log(JSON.stringify(p))
+        infoProducts += `<li>
+        <strong>Titulo: </strong>${p.title}<br>
+        <strong>Price: </strong>${p.price}<br>
+        <strong>Description: </strong>${p.description}<br>
+        <strong>Category: </strong>${p.category}<br>
+        </li>`
+    })
+    infoProducts += `</ul>`
+    updateList.innerHTML = infoProducts
+    console.log(updateList)
+    clearForm()
+})
+
+function cleanForm(){
+    price.value = ''
+    title.value = ''
+    code.value = ''
+    description.value = ''
+    category.value= ''
+    stock.value = ''
 }
+
+
