@@ -48,5 +48,15 @@
 		"category": "descanso",
 		"thumbnail": "/img.5",
 		"id": "9cbf4443-afb4-4cb4-8cde-98e9aaddffda"
+	},
+	{
+		"title": "cocina",
+		"description": "cocina description",
+		"code": "8",
+		"price": "10000",
+		"stock": "4",
+		"category": "casa",
+		"thumbnail": "/img.6",
+		"id": "5cdd1f87-1f3d-4df9-8ba1-e96280b84cf2"
 	}
 ]
