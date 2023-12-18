@@ -69,9 +69,10 @@ socketServer.on("connection", async (socket) => {
     console.log(`>${user} se ha conectado`);
   });
 
-  socket.on("chat: message", async (message) => {
+  socket.on("chat-messages", async (message) => {
     await messageModel.create(message);
-    socketServer.emit("message", await messageModel.find());
+    const messages = await messageModel.find();
+    socketServer.emit("message", messages);
   });
 
   socket.emit("msg", "bienvenido al chat");

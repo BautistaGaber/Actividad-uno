@@ -116,14 +116,14 @@ const output = document.getElementById("output");
 const actions = document.getElementById("actions");
 
 btn.addEventListener("click", () => {
-  socket.emit("chat: message", {
+  socket.emit("chat-messages", {
     user,
     message: message.value,
   });
   message.value = "";
 });
 
-socket.on("messages", (arrayMsgs) => {
+socket.on("message", (arrayMsgs) => {
   actions.innerHTML = "";
   const chatRender = arrayMsgs
     .map((msg) => {
