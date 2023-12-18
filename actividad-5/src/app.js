@@ -7,6 +7,8 @@ import { viewRouter } from "./routes/view-router.js";
 import { cartsRouter } from "./routes/carts.js";
 import productModel from "./dao/mongodb/models/product.model.js";
 import mongoose from "mongoose";
+import { messageRouter } from "./routes/message.js";
+import messageModel from "./dao/mongodb/models/message.model.js";
 
 const app = express();
 
@@ -20,6 +22,7 @@ app.set("views", __dirname + "/views");
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/message", messageRouter);
 app.use("/views", viewRouter);
 
 const MONGO =
@@ -41,6 +44,8 @@ socketServer.on("connection", async (socket) => {
     console.log("user disconnect");
   });
 
+  socketServer.emit("messages", await messageModel.find());
+
   socket.emit("initialProducts", await productModel.find());
 
   socket.on("newProduct", async (newProd) => {
@@ -58,6 +63,25 @@ socketServer.on("connection", async (socket) => {
     } else {
       console.error("no hay id valido");
     }
+  });
+
+  socket.on("newUser", (user) => {
+    console.log(`>${user} se ha conectado`);
+  });
+
+  socket.on("chat: message", async (message) => {
+    await messageModel.create(message);
+    socketServer.emit("message", await messageModel.find());
+  });
+
+  socket.emit("msg", "bienvenido al chat");
+
+  socket.on("newUser", (user) => {
+    socket.broadcast.emit("newUser", user);
+  });
+
+  socket.on("chat:typing", (user) => {
+    socket.broadcast.emit("chat:typing", user);
   });
 });
 
